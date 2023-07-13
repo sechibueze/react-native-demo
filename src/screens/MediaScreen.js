@@ -5,15 +5,15 @@ export default function MediaScreen() {
   const [sound, setSound] = useState();
   const [status, setStatus] = useState({});
   const video = useRef(null);
-  const playMySound = async () => {
-    const { sound } = await Audio.Sound.createAsync(
-      require('../../assets/sound.mp3')
-    );
+  // const playMySound = async () => {
+  //   const { sound } = await Audio.Sound.createAsync(
+  //     require('../../assets/sound.mp3')
+  //   );
 
-    setSound(sound);
+  //   setSound(sound);
 
-    sound.playAsync();
-  };
+  //   sound.playAsync();
+  // };
 
   useEffect(() => {
     return sound ? () => sound.unloadAsync() : undefined;
@@ -25,7 +25,7 @@ export default function MediaScreen() {
       }}
     >
       <Text>MediaScreen</Text>
-      <Button title='Play music' onPress={playMySound} />
+      {/* <Button title='Play music' onPress={playMySound} /> */}
 
       <Video
         style={{
@@ -38,10 +38,10 @@ export default function MediaScreen() {
         useNativeControls
         isLooping
         resizeMode={ResizeMode.CONTAIN}
-        source={require('../../assets/video.mp4')}
-        // source={{
-        //   uri: 'https://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4',
-        // }}
+        // source={require('../../assets/video.mp4')}
+        source={{
+          uri: 'https://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4',
+        }}
         onPlaybackStatusUpdate={(currentStatus) =>
           setStatus(() => currentStatus)
         }
