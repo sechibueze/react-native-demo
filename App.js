@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import MediaScreen from './src/screens/MediaScreen';
@@ -10,6 +11,26 @@ import LoginScreen from './src/screens/LoginScreen';
 import RegisterScreen from './src/screens/RegisterScreen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { AntDesign } from '@expo/vector-icons';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+
+const MyDrawer = createDrawerNavigator();
+
+const AppDrawer = () => {
+  return (
+    <MyDrawer.Navigator>
+      <MyDrawer.Screen
+        options={{
+          drawerIcon: (props) => <AntDesign name='android1' {...props} />,
+        }}
+        name='Welcome1'
+        component={WelcomeScreen}
+      />
+      <MyDrawer.Screen name='Welcome3' component={LoginScreen} />
+      <MyDrawer.Screen name='Welcome2' component={RegisterScreen} />
+    </MyDrawer.Navigator>
+  );
+};
+
 const Tab = createBottomTabNavigator();
 
 const BottomTabs = () => {
@@ -67,7 +88,7 @@ const StackNavigator = () => {
 export default function App() {
   return (
     <NavigationContainer>
-      <BottomTabs />
+      <AppDrawer />
     </NavigationContainer>
   );
 }
